@@ -1,0 +1,34 @@
+.container__field{
+  display: flex;
+  padding: 18px;
+  font-size: 1.2rem;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2f3640;
+}
+
+.checked-field > span{
+  text-decoration-line: line-through;
+  color:#7f8fa6;
+}
+
+.field__right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.field__right button{
+  background-color: #c23616;
+  border: none;
+  width: 25px;
+  height: 25px;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-left: 8px;
+}
+
+.checkbox {
+  width: 25px;
+  height: 25px;
+}
