@@ -1,6 +1,6 @@
 import "./Task.css";
 
-const Item = ({content, isDone}) => {
+const Task = ({content, isDone}) => {
 
   const taskCompleted = (e) => {
     //TODO: complete the tast with states
@@ -28,4 +28,4 @@ const Item = ({content, isDone}) => {
   );
 };
 
-export default Item;
+export default Task;
