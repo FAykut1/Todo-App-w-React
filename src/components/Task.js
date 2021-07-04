@@ -1,13 +1,13 @@
 import "./Task.css";
 
 const Task = ({content, isDone}) => {
-
   const taskCompleted = (e) => {
     //TODO: complete the tast with states
   };
 
   const removeTask = (e) => {
     //TODO: remove task from the list
+    console.log("Task removed!");
   }
 
   return (
@@ -26,6 +26,9 @@ const Task = ({content, isDone}) => {
       </div>
     </div>
   );
+
+
+
 };
 
 export default Task;

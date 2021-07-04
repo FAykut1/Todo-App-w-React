@@ -7,6 +7,10 @@
   background-color: #2f3640;
 }
 
+.container__field:hover{
+  background-color: #292f38;
+}
+
 .checked-field > span{
   text-decoration-line: line-through;
   color:#7f8fa6;
