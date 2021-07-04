@@ -2,4 +2,5 @@
   position:absolute;
   box-sizing: border-box;
   width: 500px;
+  cursor: grab;
 }
