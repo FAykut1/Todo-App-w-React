@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import List from './components/List';
@@ -45,7 +45,6 @@ function App() {
         </div>
         <List tasks={tasks} removeTask={removeTask} updateTask={updateTask}/>
       </div>
-
     </div>
   );
 }
