@@ -4,12 +4,8 @@ import Header from './components/Header';
 import List from './components/List';
 
 function App() {
-  const [tasks, setTasks] = useState(null);
+  const [tasks, setTasks] = useState(require('./data.json')?.tasks);
   const taskInputRef = useRef();
-
-  useEffect(() => {
-    setTasks(require('./data.json')?.tasks);
-  },[]);
 
   const addTask = () => {
     if(taskInputRef.current.value === '') return;
@@ -23,12 +19,21 @@ function App() {
     setTasks([...tasks]);
 
     taskInputRef.current.value = '';
-  }
+  };
 
   const removeTask = (index) => {
-    tasks.splice(index, 1);
-    setTasks([...tasks]);
-  }
+    let _tasks = tasks.filter((v, i) => {
+      return i !== index;
+    });
+    
+    setTasks(_tasks);
+  };
+
+  const updateTask = (index, updatedTask) => {
+    let _tasks = tasks;
+    _tasks[index] = updatedTask;
+    setTasks([..._tasks]);
+  };
 
   return (
     <div className="App">
@@ -38,7 +43,7 @@ function App() {
           <input ref={taskInputRef} placeholder="Add task"></input>
           <button onClick={addTask}>+</button>
         </div>
-        <List tasks={tasks} removeTask={removeTask}/>
+        <List tasks={tasks} removeTask={removeTask} updateTask={updateTask}/>
       </div>
 
     </div>

@@ -1,15 +1,8 @@
 import { useState } from "react";
 import "./Task.css";
 
-const Task = ({index, content, isDone, removeTask}) => {
-  const [done, setDone] = useState(isDone);
+const Task = ({index, content, isDone, removeTask, updateTask}) => {
 
-  const taskCompleted = (e) => {
-    //TODO: complete the tast with states
-
-    setDone(!done);
-  };
-  
   const _removeTask = (e) => {
     //TODO: change this later because its so BAD!
     console.log("Task removed!");
@@ -17,7 +10,7 @@ const Task = ({index, content, isDone, removeTask}) => {
   }
 
   return (
-    <div className={`container__field ${done ? 'checked-field':''}`}>
+    <div className={`container__field ${isDone ? 'checked-field':''}`}>
       <span>{content}</span>
       <div className="field__right">
         <input
@@ -25,8 +18,8 @@ const Task = ({index, content, isDone, removeTask}) => {
           type="checkbox"
           name="field_input"
           id="field_input"
-          defaultChecked={done}
-          onChange={taskCompleted}
+          defaultChecked={isDone}
+          onChange={() => updateTask(index, {content, isDone: !isDone})}
         />
         <button onClick={_removeTask}>x</button>
       </div>

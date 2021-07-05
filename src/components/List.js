@@ -2,7 +2,7 @@ import Task from "./Task";
 import './List.css';
 import { useState } from "react";
 
-const List = ({tasks, removeTask}) => {
+const List = ({tasks, removeTask, updateTask}) => {
   const [pressed, setPressed] = useState(false);
   const [pos, setPos] = useState([0,0]);
   const [offset, setOffset] = useState([0,0]);
@@ -27,11 +27,10 @@ const List = ({tasks, removeTask}) => {
     setPos([0, 0]);
   };
 
-
   return (
     <div className="list" onMouseMove={mouseMove} onMouseDown={mouseDown} onMouseUp={mouseUp} style={{left: pos[0], top:pos[1], position: pressed ? 'absolute' : 'unset'}}>
       {tasks?.map((v, i) => {
-        return <Task key={i} index={i} content={v.content} isDone={v.isDone} removeTask={removeTask}/>;
+        return <Task key={i} index={i} content={v.content} isDone={v.isDone} removeTask={removeTask} updateTask={updateTask}/>;
       })}
     </div>
   );
