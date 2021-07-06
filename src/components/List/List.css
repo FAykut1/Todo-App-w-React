@@ -1,6 +1,13 @@
 .list {
-  position:absolute;
   box-sizing: border-box;
   width: 500px;
   cursor: grab;
+  min-height: 120px;
+  margin-bottom: 10px;
+  box-shadow: 0px 0px 5px black;
+}
+
+.list__container {
+  display: flex;
+  flex-direction: column;
 }

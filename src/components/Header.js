@@ -1,8 +1,11 @@
 import './Header.css';
 
-const Header = () => {
+const Header = ({createList}) => {
   return (
-    <div className="header">BEST TODO APP EVER</div>
+    <div className="header">
+      <div>BEST TODO APP EVER</div>
+      <button onClick={() => createList()}>Add List</button>
+    </div>
   );
 }
 

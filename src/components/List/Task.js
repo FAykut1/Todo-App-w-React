@@ -11,7 +11,6 @@ const Task = ({index, content, isDone, removeTask, updateTask}) => {
           type="checkbox"
           name="field_input"
           id="field_input"
-          defaultChecked={isDone}
           checked={isDone}
           onChange={() => updateTask(index, {content, isDone: !isDone})}
         />

@@ -1,49 +1,25 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import List from './components/List';
 
 function App() {
-  const [tasks, setTasks] = useState(require('./data.json')?.tasks);
-  const taskInputRef = useRef();
+  const [taskLists, setTaskLists] = useState([]);
 
-  const addTask = () => {
-    if(taskInputRef.current.value === '') return;
+  const createList = () => {
+    console.log("List created!");
+    const list = <List key={taskLists.length + 1}/>
 
-    let task = {
-      content: taskInputRef.current.value,
-      isDone: false
-    };
+    taskLists.push(list);
 
-    tasks.push(task);
-    setTasks([...tasks]);
-
-    taskInputRef.current.value = '';
-  };
-
-  const removeTask = (index) => {
-    let _tasks = tasks.filter((v, i) => {
-      return i !== index;
-    });
-    
-    setTasks(_tasks);
-  };
-
-  const updateTask = (index, updatedTask) => {
-    let _tasks = tasks;
-    _tasks[index] = updatedTask;
-    setTasks([..._tasks]);
+    setTaskLists([...taskLists]);
   };
 
   return (
     <div className="App">
-      <Header/>
+      <Header createList={createList}/>
       <div className="container">
-        <div className="input-task-container">
-          <input ref={taskInputRef} placeholder="Add task"></input>
-          <button onClick={addTask}>+</button>
-        </div>
-        <List tasks={tasks} removeTask={removeTask} updateTask={updateTask}/>
+        {taskLists}
       </div>
     </div>
   );
