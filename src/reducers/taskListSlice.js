@@ -13,7 +13,8 @@ export const taskListSlice = createSlice({
     },
 
     removeList: (state, action) => {
-      state.value = state.value.filter((v,i) => action.payload !== i);
+      const {index} = action.payload;
+      state.value = state.value.filter((v,i) => index !== i);
       setLocalStorage(TASK_LISTS, state.value);
     },
 

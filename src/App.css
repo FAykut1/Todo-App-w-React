@@ -15,3 +15,45 @@
   overflow-x: auto;
   overflow-y: hidden;
 }
+
+
+.create-list {
+  display: flex;
+  height: 40px;
+  margin: 10px;
+  background-color: var(--secondary-color);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.create-list__input{
+  flex:1;
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  font-size: 1.2rem;
+  color: var(--light-text-color);
+  margin-right: 5px;
+}
+
+.create-list__input:focus{
+
+}
+
+.create-list__input:hover{
+  background-color: #2c323a;
+}
+
+.create-list__button{
+  width: 50px;
+  border: none;
+  background-color: transparent;
+  color: var(--light-text-color);
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
+
+.create-list__button:hover{
+  cursor: pointer;
+  background-color: var(--primary-color);
+}

@@ -2,7 +2,7 @@ import Task from "./Task";
 import './List.css';
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { addTask, updateList } from "../../reducers/taskListSlice";
+import { addTask, removeList, updateList } from "../../reducers/taskListSlice";
 
 const List = ({index, title, tasks}) => {
 
@@ -27,23 +27,31 @@ const List = ({index, title, tasks}) => {
       dispatch(updateList({index, title: _title}))
     }
   }
+
+  const _deleteTaskList = () => {
+    dispatch(removeList({index}));
+  }
+
+  const taskInputOnKeyDown = (e) => {
+    if(e.key === 'Enter'){
+      _addTask();
+    }
+  }
  
   return (
     <div className="list">
       <div className="list__header">
         <input className="list__title" defaultValue={title} onChange={updateTitle} type="text" />
-        <button>x</button>
+        <button onClick={_deleteTaskList}>x</button>
       </div>
       <div className="input-task-container">
-          <input ref={taskInputRef} placeholder="Add task"></input>
+          <input ref={taskInputRef} onKeyDown={taskInputOnKeyDown} placeholder="Add task"></input>
           <button onClick={_addTask}>+</button> 
       </div>
       <div className="list__container">
-
         {tasks?.map((v, i) => {
           return <Task key={i} listIndex={index} taskIndex={i} content={v.content} isDone={v.isDone}/>;
         })}
-
       </div>
     </div>
   );
