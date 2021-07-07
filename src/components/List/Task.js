@@ -4,7 +4,7 @@ const Task = ({index, content, isDone, removeTask, updateTask}) => {
 
   return (
     <div className={`container__field ${isDone ? 'checked-field':''}`}>
-      <span>{content}</span>
+      <div className="container__field-content">{content}</div>
       <div className="field__right">
         <input
           className="checkbox"

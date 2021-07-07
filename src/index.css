@@ -1,6 +1,16 @@
 body {
-  background-color: #353b48;
   height: 100vh;
   margin: 0;
   padding: 0;
+}
+
+#root {
+  height: 100vh;
+  overflow: hidden;
+
+  --primary-color: #353b48;
+  --secondary-color: #2e343d;
+  
+  --light-text-color: #dcdde1;
+  --dark-text-color: var(--secondary-color);
 }

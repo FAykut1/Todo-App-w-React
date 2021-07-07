@@ -2,16 +2,24 @@
   display: flex;
   padding: 18px;
   font-size: 1.2rem;
-  justify-content: space-between;
   align-items: center;
-  background-color: #2f3640;
+  background-color: var(--primary-color);
+  margin-bottom: 10px;
+  border-radius: 10px;
 }
 
 .container__field:hover{
   background-color: #292f38;
 }
 
-.checked-field > span{
+.container__field-content{
+  flex:1;
+  word-break: break-all;
+  margin-right: 10px;
+}
+
+
+.checked-field > .container__field-content{
   text-decoration-line: line-through;
   color:#7f8fa6;
 }

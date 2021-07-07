@@ -1,11 +1,18 @@
 .header{
   display: flex;
-  background-color: #2f3640 ;
-  padding: 26px;
+  background-color: var(--secondary-color);
   color: whitesmoke;
   font-size: 1.8rem;
   font-weight: bold;
   justify-content: space-between;
+  height: 8vh;
+  box-sizing: border-box;
+}
+
+.header div {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
 }
 
 .header button{
