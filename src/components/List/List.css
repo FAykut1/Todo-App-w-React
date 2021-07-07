@@ -43,9 +43,14 @@
 
 
 .input-task-container > input:focus {
-  outline: #bcc3ce solid 4px;
+  box-shadow: 0 0 0 1px #bcc3ce;
+  outline: none;
+  background-color: var(--primary-color);
 }
 
+.input-task-container > input:hover {
+  background-color: var(--primary-color);
+}
 
 .input-task-container > button{
   font-weight: bold;

@@ -1,25 +1,27 @@
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import Header from './components/Header';
 import List from './components/List';
+import { addList } from './reducers/taskListSlice';
 
 function App() {
-  const [taskLists, setTaskLists] = useState([]);
+  // const [taskLists, setTaskLists] = useState([]);
+  const taskLists = useSelector(state => state.taskList.value);
+  const dispatch = useDispatch();
 
   const createList = () => {
-    console.log("List created!");
-    const list = <List key={taskLists.length + 1}/>
-
-    taskLists.push(list);
-
-    setTaskLists([...taskLists]);
+    const tasks = {
+      title: 'Deneme',
+      childs: [],
+    }
+    dispatch(addList(tasks))
   };
 
   return (
     <div className="App">
       <Header createList={createList}/>
       <div className="container">
-        {taskLists}
+        {taskLists.map((list, i) => <List index={i} title={list.title} tasks={list.childs} key={i}/>)}
       </div>
     </div>
   );

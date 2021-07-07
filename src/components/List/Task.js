@@ -1,6 +1,25 @@
+import { useDispatch } from "react-redux";
+import { removeTask, updateTask } from "../../reducers/taskListSlice";
 import "./Task.css";
 
-const Task = ({index, content, isDone, removeTask, updateTask}) => {
+const Task = ({listIndex, taskIndex, content, isDone}) => {
+
+  const dispatch = useDispatch();
+  // updateTask(index, {content, isDone: !isDone})
+
+  const _updateTask = () => {
+
+    const data = {
+      listIndex,
+      taskIndex,
+      task: {
+        content,
+        isDone: !isDone,
+      },
+    };
+
+    dispatch(updateTask(data));
+  }
 
   return (
     <div className={`container__field ${isDone ? 'checked-field':''}`}>
@@ -12,9 +31,9 @@ const Task = ({index, content, isDone, removeTask, updateTask}) => {
           name="field_input"
           id="field_input"
           checked={isDone}
-          onChange={() => updateTask(index, {content, isDone: !isDone})}
+          onChange={_updateTask}
         />
-        <button onClick={() => removeTask(index)}>x</button>
+        <button onClick={() => dispatch(removeTask({listIndex, taskIndex}))}>x</button>
       </div>
     </div>
   );

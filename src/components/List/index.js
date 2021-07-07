@@ -1,60 +1,47 @@
 import Task from "./Task";
 import './List.css';
-import { useState, useRef, useEffect } from "react";
-import { TASK_LIST } from "../../constants/localstorage-vars";
+import { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { addTask, updateList } from "../../reducers/taskListSlice";
 
-const List = ({title}) => {
-  const [tasks, setTasks] = useState([]);
+const List = ({index, title, tasks}) => {
 
   const taskInputRef = useRef();
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const _tasks = JSON.parse(localStorage.getItem(TASK_LIST));
-    setTasks(_tasks ?? []);
-  }, []);
-
-
-
-  const addTask = () => {
+  const _addTask = () => {
     if(taskInputRef.current.value === '') return;
     let task = {
       content: taskInputRef.current.value,
       isDone: false
     };
-    tasks.push(task);
-    localStorage.setItem(TASK_LIST, JSON.stringify(tasks));
-    setTasks([...tasks]);
-    taskInputRef.current.value = '';
+
+    dispatch(addTask({index, task}));
+
+    taskInputRef.current.value = "";
   };
 
-  const removeTask = (index) => {
-    let _tasks = tasks.filter((v, i) => {
-      return i !== index;
-    });
-    
-    setTasks(_tasks);
-  };
-
-  const updateTask = (index, updatedTask) => {
-    let _tasks = tasks;
-    _tasks[index] = updatedTask;
-    setTasks([..._tasks]);
-  };
-
+  const updateTitle = (e) => {
+    const _title = e.target.value;
+    if(_title && _title !== title){
+      dispatch(updateList({index, title: _title}))
+    }
+  }
+ 
   return (
     <div className="list">
       <div className="list__header">
-        <input className="list__title" type="text" />
+        <input className="list__title" defaultValue={title} onChange={updateTitle} type="text" />
         <button>x</button>
       </div>
       <div className="input-task-container">
           <input ref={taskInputRef} placeholder="Add task"></input>
-          <button onClick={addTask}>+</button>
+          <button onClick={_addTask}>+</button> 
       </div>
       <div className="list__container">
 
         {tasks?.map((v, i) => {
-          return <Task key={i} index={i} content={v.content} isDone={v.isDone} removeTask={removeTask} updateTask={updateTask}/>;
+          return <Task key={i} listIndex={index} taskIndex={i} content={v.content} isDone={v.isDone}/>;
         })}
 
       </div>
